@@ -1,0 +1,72 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "build",
+  "agent": {
+    "plan": {
+      "mode": "primary",
+      "description": "Task breakdown, solution design, planning",
+      "temperature": 0.1,
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+    "architect": {
+      "mode": "subagent",
+      "description": "System architect - designs architecture, technology choices, component structure",
+      "temperature": 0.2,
+      "prompt": "{file:.opencode/agents/architect.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+    "coder": {
+      "mode": "subagent",
+      "description": "Implementation expert - writes production-quality code",
+      "temperature": 0.3,
+      "prompt": "{file:.opencode/agents/coder.md}",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "reviewer": {
+      "mode": "subagent",
+      "description": "Code reviewer - checks for bugs, security issues, and best practices",
+      "temperature": 0.1,
+      "prompt": "{file:.opencode/agents/reviewer.md}",
+      "permission": {
+        "edit": "deny",
+        "bash": "ask"
+      }
+    },
+    "debugger": {
+      "mode": "subagent",
+      "description": "Debug specialist - finds and fixes bugs, analyzes errors",
+      "temperature": 0.2,
+      "prompt": "{file:.opencode/agents/debugger.md}",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    },
+    "explorer": {
+      "mode": "subagent",
+      "description": "Codebase explorer - quickly searches and analyzes project structure",
+      "temperature": 0.1,
+      "prompt": "{file:.opencode/agents/explorer.md}",
+      "permission": {
+        "edit": "deny",
+        "read": "allow",
+        "glob": "allow",
+        "grep": "allow",
+        "list": "allow"
+      }
+    }
+  },
+  "permission": {
+    "edit": "ask",
+    "bash": "ask"
+  }
+}
